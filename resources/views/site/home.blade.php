@@ -430,11 +430,39 @@
                 $('#productGridSlider2').html(response.html);
                 const productGridSlider2 = new Swiper('#productGridSlider2', {
                     slidesPerView: 4, // Số lượng slide hiển thị cùng lúc
-                    grid: {
-                        rows: 2,
-                        fill: 'row',
-                    },
                     spaceBetween: 30, // Khoảng cách giữa các slide
+                    breakpoints: {
+                        1400: {
+                            slidesPerView: 3,
+                            grid: {
+                                rows: 2,
+                                fill: 'row',
+                            },
+                        },
+                        1200: {
+                            slidesPerView: 3,
+                            grid: {
+                                rows: 2,
+                                fill: 'row',
+                            },
+                        },
+                        992: {
+                            slidesPerView: 2,
+                            grid: {
+                                rows: 2,
+                                fill: 'row',
+                            },
+                        },
+                        768: {
+                            slidesPerView: 2,
+                        },
+                        600: {
+                            slidesPerView: 1,
+                        },
+                        0: {
+                            slidesPerView: 1,
+                        },
+                    },
                     navigation: {
                         nextEl: '.slider-next',
                         prevEl: '.slider-prev',
