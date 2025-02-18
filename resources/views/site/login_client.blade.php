@@ -42,7 +42,7 @@
                 <div class="row">
                     <div
                         class="col-lg-4 col-md-6 col-sm-12 col-xl-4 offset-0 offset-xl-4 offset-lg-4 offset-md-3 offset-xl-3 col-12">
-                        <div class="row" ng-show="formLogin">
+                        <div class="row" ng-show="formLogin" data-cue="slideInUp" data-delay="100">
                             <div class="page-login pagecustome clearfix">
                                 <div class="wpx" style="margin-bottom: 0">
                                     <h1 class="title_heads text-center"><span>Đăng nhập</span></h1>
@@ -99,7 +99,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row" ng-show="formRegister">
+                        <div class="row" ng-show="formRegister" data-cue="slideInUp" data-delay="100">
                             <div class="page-login pagecustome clearfix">
                                 <div class="wpx" style="margin-bottom: 0">
                                     <h1 class="title_heads text-center mb-0"><span>Đăng ký</span></h1>
