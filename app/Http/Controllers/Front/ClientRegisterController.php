@@ -82,14 +82,14 @@ class ClientRegisterController extends Controller
 			'account_name' => 'required|unique:users,account_name',
 			'password' => 'required|min:6|regex:/^[a-zA-Z0-9\@\$\!\%\*\#\?\&]+$/',
             'phone_number' => 'nullable|regex:/^(0)[0-9]{9,11}$/|unique:users,phone_number',
-            'invite_code' => 'nullable|exists:users,invite_code',
+            // 'invite_code' => 'nullable|exists:users,invite_code',
 		];
 
 		$validate = Validator::make(
 			$request->all(),
 			$rule,
             [
-                'invite_code.exists' => 'Mã giới thiệu không tồn tại',
+                // 'invite_code.exists' => 'Mã giới thiệu không tồn tại',
                 'phone_number.regex' => 'Số điện thoại không đúng định dạng',
                 'password.regex' => 'Mật khẩu không đúng định dạng',
                 'email.unique' => 'Email đã được sử dụng',
@@ -112,7 +112,7 @@ class ClientRegisterController extends Controller
 			$object->phone_number = $request->phone_number;
 			$object->status = 1;
 			$object->type = 10;
-            $object->parent_id = $request->invite_code ? User::where('invite_code', $request->invite_code)->first()->id : null;
+            // $object->parent_id = $request->invite_code ? User::where('invite_code', $request->invite_code)->first()->id : null;
 			$object->save();
 
 			DB::commit();

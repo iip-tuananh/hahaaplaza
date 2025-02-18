@@ -13,73 +13,6 @@
     <link rel="stylesheet" href="/site/css/style.css">
     <link rel="stylesheet" href="/site/css/callbutton.css">
     @yield('css')
-</head>
-
-<body ng-app="App" ng-controller="AppController">
-    <div id="QuickView" class="white-popup mfp-hide">
-        <div class="container bg-white rounded-10">
-            <div class="row gx-60">
-                <div class="col-lg-6">
-                    <div class="product-big-img">
-                        <div class="img"><img
-                                ng-src="<% quickViewProduct.image.path %>"
-                                alt="<% quickViewProduct.name %>"></div>
-                    </div>
-                </div>
-                <div class="col-lg-6 align-self-center">
-                    <div class="product-about">
-                        <p class="price" ng-if="quickViewProduct.base_price"><% quickViewProduct.price | number:0 %>đ<del><% quickViewProduct.base_price | number:0 %>đ</del></p>
-                        <p class="price" ng-if="!quickViewProduct.base_price"><% quickViewProduct.price | number:0 %>đ</p>
-                        <h2 class="product-title"><% quickViewProduct.name %></h2>
-                        <div class="product-rating">
-                            <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5"><span
-                                    style="width:100%">Rated <strong class="rating">5.00</strong> out of 5 based on
-                                    <span class="rating">1</span> đánh giá</span></div>
-                            <a href="" class="woocommerce-review-link">(<span class="count"></span> Đánh giá sản phẩm)</a>
-                        </div>
-                        <div class="text" ng-bind-html="quickViewProduct.intro"></div>
-                        <div class="product-option" data-cue="slideInUp" ng-if="quickViewProduct.attributes">
-                            <div class="product-size-wrap product-attribute-values" ng-repeat="(index, attribute) in quickViewProduct.attributes">
-                                <div class="product-option-title"><% attribute.name %></div>
-                                <div class="product-option-values" ng-repeat="value in attribute.values">
-                                    <a href="javascript:void(0)" ng-click="selectAttribute(attribute, value, index)" class="value"><% value %></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="actions">
-                            <div class="quantity">
-                                <button class="qty-btn" onclick="minusQuantity()">
-                                    <i class="far fa-minus"></i>
-                                </button>
-                                <input type="number" class="qty-input"
-                                    step="1" min="1" max="100" name="quantity_quickview" ng-model="quantity_quickview"
-                                    title="Qty">
-                                <button class="qty-btn" onclick="plusQuantity()">
-                                    <i class="far fa-plus"></i>
-                                </button>
-                            </div>
-                            <button class="ot-btn" ng-click="addToCartFromQuickView()">Thêm giỏ hàng</button>
-                        </div>
-                        <div class="product_meta">
-                            <span class="posted_in">Danh mục: <a href="javascript:void(0)"><% quickViewProduct.category.name %></a></span>
-                                <span ng-if="quickViewProduct.tags.length > 0">Tags:
-                                    <a href="javascript:void(0)" ng-repeat="tag in quickViewProduct.tags"><% tag.name %></a>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <button title="Close (Esc)" type="button" class="mfp-close">×</button>
-        </div>
-    </div>
-    @include('site.partials.header')
-    @yield('content')
-    @include('site.partials.footer')
-    <script src="/site/js/jquery-3.7.1.min.js"></script>
-    <script src="/site/js/app.min.js"></script>
-    <script src="/site/js/particles-config.js"></script>
-    <script src="/site/js/main.js"></script>
-    <script src="/site/js/callbutton.js"></script>
 
     <!-- Angular Js -->
     <script src="{{ asset('libs/angularjs/angular.js?v=222222') }}"></script>
@@ -91,7 +24,6 @@
     <script src="{{ asset('js/angular.js') }}?version={{ env('APP_VERSION', '1') }}"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
-    @stack('script')
 
     <script>
         // Plus number quantiy product detail
@@ -423,6 +355,77 @@
         const DEFAULT_CLIENT_USER = null;
         @endif
     </script>
+</head>
+
+<body ng-app="App" ng-controller="AppController">
+    <div id="QuickView" class="white-popup mfp-hide">
+        <div class="container bg-white rounded-10">
+            <div class="row gx-60">
+                <div class="col-lg-6">
+                    <div class="product-big-img">
+                        <div class="img"><img
+                                ng-src="<% quickViewProduct.image.path %>"
+                                alt="<% quickViewProduct.name %>"></div>
+                    </div>
+                </div>
+                <div class="col-lg-6 align-self-center">
+                    <div class="product-about">
+                        <p class="price" ng-if="quickViewProduct.base_price"><% quickViewProduct.price | number:0 %>đ<del><% quickViewProduct.base_price | number:0 %>đ</del></p>
+                        <p class="price" ng-if="!quickViewProduct.base_price"><% quickViewProduct.price | number:0 %>đ</p>
+                        <h2 class="product-title"><% quickViewProduct.name %></h2>
+                        <div class="product-rating">
+                            <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5"><span
+                                    style="width:100%">Rated <strong class="rating">5.00</strong> out of 5 based on
+                                    <span class="rating">1</span> đánh giá</span></div>
+                            <a href="" class="woocommerce-review-link">(<span class="count"></span> Đánh giá sản phẩm)</a>
+                        </div>
+                        <div class="text" ng-bind-html="quickViewProduct.intro"></div>
+                        <div class="product-option" data-cue="slideInUp" ng-if="quickViewProduct.attributes">
+                            <div class="product-size-wrap product-attribute-values" ng-repeat="(index, attribute) in quickViewProduct.attributes">
+                                <div class="product-option-title"><% attribute.name %></div>
+                                <div class="product-option-values" ng-repeat="value in attribute.values">
+                                    <a href="javascript:void(0)" ng-click="selectAttribute(attribute, value, index)" class="value"><% value %></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="actions">
+                            <div class="quantity">
+                                <button class="qty-btn" onclick="minusQuantity()">
+                                    <i class="far fa-minus"></i>
+                                </button>
+                                <input type="number" class="qty-input"
+                                    step="1" min="1" max="100" name="quantity_quickview" ng-model="quantity_quickview"
+                                    title="Qty">
+                                <button class="qty-btn" onclick="plusQuantity()">
+                                    <i class="far fa-plus"></i>
+                                </button>
+                            </div>
+                            <button class="ot-btn" ng-click="addToCartFromQuickView()">Thêm giỏ hàng</button>
+                        </div>
+                        <div class="product_meta">
+                            <span class="posted_in">Danh mục: <a href="javascript:void(0)"><% quickViewProduct.category.name %></a></span>
+                                <span ng-if="quickViewProduct.tags.length > 0">Tags:
+                                    <a href="javascript:void(0)" ng-repeat="tag in quickViewProduct.tags"><% tag.name %></a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button title="Close (Esc)" type="button" class="mfp-close">×</button>
+        </div>
+    </div>
+    @include('site.partials.header')
+    @yield('content')
+    @include('site.partials.footer')
+    <script src="/site/js/jquery-3.7.1.min.js"></script>
+    <script src="/site/js/app.min.js"></script>
+    <script src="/site/js/particles-config.js"></script>
+    <script src="/site/js/main.js"></script>
+    <script src="/site/js/callbutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
+
+    @stack('script')
+
 </body>
 
 </html>

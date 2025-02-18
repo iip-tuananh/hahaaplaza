@@ -1,4 +1,4 @@
-<div class="ot-menu-wrapper">
+<div class="ot-menu-wrapper" ng-cloak>
     <div class="ot-menu-area text-center">
         <button class="ot-menu-toggle"><i class="fal fa-times"></i></button>
         <div class="mobile-logo"><a href="{{ route('front.home-page') }}"><img
@@ -45,7 +45,7 @@
         </div>
     </div>
 </div>
-<header class="ot-header header-layout2">
+<header class="ot-header header-layout2" ng-cloak>
     <div class="menu-top">
         <div class="container">
             <div class="row align-items-center justify-content-between">
@@ -82,10 +82,14 @@
                                 <h3 class="box-title"><a href="tel:{{ str_replace(' ', '', $config->hotline) }}">{{ $config->hotline }}</a></h3>
                             </div>
                         </div>
-                        <a href="" class="icon-btn d-sm-block"> <i
-                                class="far fa-circle-user"></i>
+                        <a href="{{ route('front.client-account') }}" class="icon-btn d-sm-block">
+                            @if (!empty($user_avatar))
+                            <img src="{{$user_avatar}}" alt="avatar" loading="lazy" style="border-radius: 50%;">
+                            @else
+                            <i class="far fa-circle-user"></i>
+                            @endif
                         </a>
-                        <button type="button" class="icon-btn sideMenuCart"><span class="badge" ng-if="cart.count > 0" ng-cloak><% cart.count %></span> <i
+                        <button type="button" class="icon-btn sideMenuCart"><span class="badge" ng-if="cart.count > 0"><% cart.count %></span> <i
                                 class="far fa-basket-shopping"></i></button>
                         <button type="button" class="ot-menu-toggle d-block d-lg-none"><i
                                 class="far fa-bars"></i></button>
@@ -201,7 +205,7 @@
         </div>
     </div>
 </header>
-<div class="sidemenu-wrapper sidemenu-cart">
+<div class="sidemenu-wrapper sidemenu-cart" ng-cloak>
     <div class="sidemenu-content">
         <button class="closeButton sideMenuCls"><i class="far fa-times"></i></button>
         <div class="widget woocommerce widget_shopping_cart">

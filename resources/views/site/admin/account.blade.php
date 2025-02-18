@@ -8,51 +8,9 @@
 @section('image')
 @endsection
 @section('css')
-    <link href="{{ asset('site/css/account_oder_style.scss.css') }}" rel="stylesheet" type="text/css" media="all" />
-    <link href="{{ asset('site/css/breadcrumb_style.scss.css') }}" rel="stylesheet" type="text/css" media="all" />
     <style>
-        .page_customer_account .invite-code{
-            width: 120px !important;
-            padding: 5px !important;
-            border: 1px solid #ccc !important;
-            border-top-left-radius: 5px !important;
-            border-bottom-left-radius: 5px !important;
-            margin-bottom: 0 !important;
-            font-size: 16px !important;
-        }
-        .page_customer_account .group-invite-code{
-            display: flex;
-            align-items: center;
-        }
-        .page_customer_account .group-invite-code .btn-copy-invite-code{
-            padding: 8px 10px;
-            border-top: 1px solid #ccc;
-            border-bottom: 1px solid #ccc;
-            background-color: #fafafa;
-            color: #000;
-        }
-        .page_customer_account .group-invite-link{
-            width: 70%;
-        }
-        .page_customer_account .group-invite-link .invite-code{
-            width: 75% !important;
-        }
-
-        @media (max-width: 768px) {
-            .page_customer_account .group-invite-link{
-                width: 100%;
-            }
-            .page_customer_account .group-invite-link .invite-code{
-                width: 65% !important;
-            }
-        }
-        .page_customer_account .group-invite-code .btn-update-invite-code{
-            padding: 8px 10px;
-            border: 1px solid #ccc;
-            border-top-right-radius: 5px !important;
-            border-bottom-right-radius: 5px !important;
-            background-color: #ff9933;
-            color: #fff;
+        label {
+            display: inline-block !important;
         }
         .text-danger {
             color: #dc3232 !important;
@@ -133,6 +91,9 @@
             font-size: 18px !important;
             height: auto !important;
         }
+        select, .form-control, .form-select, textarea, input {
+            height: 40px;
+        }
     </style>
 @endsection
 @section('content')
@@ -140,10 +101,10 @@
         <section class="signup page_customer_account">
             <div class="container">
                 <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-lg-3 col-left-ac">
-                        <div class="block-account">
-                            <h5 class="title-account">Trang tài khoản</h5>
-                            <p>Xin chào, <span style="color:#ff9933;">{{ Auth::guard('client')->user()->name }}</span>&nbsp;!</p>
+                    <div class="col-xs-12 col-sm-12 col-lg-3 col-left-ac " >
+                        <div class="block-account pt-4" style="background-color: #FFF7ED; height: 100%; padding-left: 10px; padding-right: 10px;">
+                            <h3 class="title-account">Trang tài khoản</h3>
+                            <p style="font-size: 18px; font-weight: 600;">Xin chào, <span style="color:#ff9933;">{{ Auth::guard('client')->user()->name }}</span>&nbsp;!</p>
                             <ul>
                                 <li>
                                     <a disabled="disabled" class="title-info" title="Thông tin tài khoản"
@@ -159,27 +120,10 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-xs-12 col-sm-12 col-lg-9 col-right-ac">
+                    <div class="col-xs-12 col-sm-12 col-lg-9 col-right-ac pt-4 pb-4">
                         <h1 class="title-head margin-top-0 d-flex" style="align-items: center; justify-content: flex-end; flex-wrap: wrap;">
                             <div style="font-size: 19px; font-weight: 500; flex: 1 1 50%;" ng-if="!showChangePassword">Thông tin tài khoản</div>
                             <div style="font-size: 19px; font-weight: 500; flex: 1 1 50%;" ng-if="showChangePassword">Thay đổi mật khẩu</div>
-                            <div class="ml-auto group-invite-code" style="flex: 1 1 -1%;">
-                                <label style="font-weight: 600; font-size: 16px; margin-bottom: 0 !important; margin-right: 10px;">Mã giới thiệu: </label>
-                                <input class="invite-code" type="text" ng-model="currentUser.invite_code" placeholder="Mã giới thiệu" disabled>
-                                <a class="btn-copy-invite-code" href="javascript:void(0)" ng-click="copyReferralCode($event)" title="Copy mã giới thiệu" style="border-right: 1px solid #ccc;">
-                                    <i class="fa fa-copy"></i>
-                                </a>
-                                <a class="btn-update-invite-code" href="javascript:void(0)" ng-click="updateReferralCode($event)" title="Tạo lại mã giới thiệu" ng-if="!currentUser.invite_code">
-                                    <i class="fas fa-sync-alt"></i>
-                                </a>
-                            </div>
-                            <div class="group-invite-code group-invite-link" style="margin-top: 10px; flex: 0 1 -1%;">
-                                <label style="font-weight: 600; font-size: 16px; margin-bottom: 0 !important; margin-right: 10px; width:21%" ng-if="currentUser.invite_code">Link giới thiệu: </label>
-                                <input class="invite-code" type="text" ng-model="link_invite_code" placeholder="Link giới thiệu" disabled ng-if="currentUser.invite_code">
-                                <a class="btn-copy-invite-code" href="javascript:void(0)" ng-click="copyReferralLink($event)" title="Copy link giới thiệu" style="border-right: 1px solid #ccc;" ng-if="currentUser.invite_code">
-                                    <i class="fa fa-copy"></i>
-                                </a>
-                            </div>
                         </h1>
                         <div class="form-signup name-account m992" ng-if="!showChangePassword">
                             <div class="row">
@@ -223,7 +167,7 @@
                                             <strong><% errors.address[0] %></strong>
                                         </span>
                                     </div>
-                                    <div class="form-group">
+                                    {{-- <div class="form-group">
                                         <label>Số tài khoản</label>
                                         <span class="text-danger">(*)</span>
                                         <input type="text" class="form-control" ng-model="currentUser.bank_account_number">
@@ -246,7 +190,8 @@
                                         <span class="invalid-feedback d-block error" role="alert">
                                             <strong><% errors.bank_name[0] %></strong>
                                         </span>
-                                    </div>
+                                    </div> --}}
+                                    <button class="btn btn-success" style="float: right;" ng-click="updateUser()">Cập nhật</button>
                                 </div>
                                 <div class="col-md-5">
                                     <div class="card">
@@ -265,7 +210,6 @@
                                             </span>
                                         </div>
                                     </div>
-                                    <button class="btn btn-success" style="float: right;" ng-click="updateUser()">Cập nhật</button>
                                 </div>
                             </div>
                         </div>

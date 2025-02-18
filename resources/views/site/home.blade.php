@@ -448,10 +448,6 @@
                         },
                         992: {
                             slidesPerView: 2,
-                            grid: {
-                                rows: 2,
-                                fill: 'row',
-                            },
                         },
                         768: {
                             slidesPerView: 2,

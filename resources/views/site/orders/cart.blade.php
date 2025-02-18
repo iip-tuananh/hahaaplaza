@@ -18,7 +18,7 @@
             </div>
         </div>
     </div>
-    <div class="ot-cart-wrapper space-top space-extra-bottom" ng-controller="CartController">
+    <div class="ot-cart-wrapper space-top space-extra-bottom" ng-controller="CartController" ng-cloak>
         <div class="container">
             <form class="woocommerce-cart-form">
                 <table class="cart_table">

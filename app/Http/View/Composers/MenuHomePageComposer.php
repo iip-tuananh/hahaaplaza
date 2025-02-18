@@ -28,23 +28,13 @@ class MenuHomePageComposer
 
         $user = Auth::guard('client')->user();
         if ($user) {
-            $quyet_toan_amount = OrderRevenueDetail::where('user_id', $user->id)->where('status', OrderRevenueDetail::STATUS_QUYET_TOAN)
-            ->orWhere(function($query) {
-                $query->where('status', OrderRevenueDetail::STATUS_WAIT_QUYET_TOAN)
-                ->where('settlement_amount', '>', 0);
-            })
-            ->sum('settlement_amount');
-            $waiting_quyet_toan_amount = OrderRevenueDetail::where('user_id', $user->id)->where('status', OrderRevenueDetail::STATUS_WAIT_QUYET_TOAN)
-            ->orWhere(function($query) {
-                $query->where('status', OrderRevenueDetail::STATUS_QUYET_TOAN)
-                ->where('settlement_amount', '>', 0);
-            })->sum('revenue_amount') - $quyet_toan_amount;
+            $user_avatar = $user->image ? $user->image->path : '';
         } else {
-            $waiting_quyet_toan_amount = 0;
+            $user_avatar = '';
         }
 
         $postCategories = PostCategory::query()->where(['parent_id' => 0, 'show_home_page' => 1])->latest()->get();
 
-        $view->with(['productCategories' => $productCategories, 'postCategories' => $postCategories, 'waiting_quyet_toan_amount' => $waiting_quyet_toan_amount]);
+        $view->with(['productCategories' => $productCategories, 'postCategories' => $postCategories, 'user_avatar' => $user_avatar]);
     }
 }

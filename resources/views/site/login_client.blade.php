@@ -8,26 +8,35 @@
 @section('image')
 @endsection
 @section('css')
-    <link href="{{ asset('site/css/account_oder_style.scss.css') }}" rel="stylesheet" type="text/css" media="all" />
-    <link href="{{ asset('site/css/breadcrumb_style.scss.css') }}" rel="stylesheet" type="text/css" media="all" />
+<style>
+    .page-login {
+        background-color: #FFF7ED;
+        padding: 20px 15px;
+        border-radius: 10px;
+    }
+    .page-login .title_heads {
+        font-size: 24px;
+        font-weight: 600;
+        color: #000;
+        text-transform: uppercase;
+    }
+
+</style>
 @endsection
 @section('content')
 <div ng-controller="LoginClientController" ng-cloak>
-    <section class="bread-crumb"
-        style="background: linear-gradient(0deg, rgba(0,0,0,0), rgba(0,0,0,0)),  url(/site/images/bg_footer.jpg?1721988795194) center no-repeat;">
+    <div class="breadcumb-wrapper" data-bg-src="{{asset('site/img/breadcrumb-bg.webp')}}">
         <div class="container">
-            <div class="title-bread-crumb"> Đăng nhập tài khoản
+            <div class="breadcumb-content">
+                <h1 class="breadcumb-title" data-cue="slideInUp">Đăng nhập tài khoản</h1>
+                <ul class="breadcumb-menu">
+                    <li data-cue="slideInUp" data-delay="100"><a href="{{route('front.home-page')}}">Trang chủ</a></li>
+                    <li data-cue="slideInUp" data-delay="100"><% title %></li>
+                </ul>
             </div>
-            <ul class="breadcrumb">
-                <li class="home">
-                    <a href="{{route('front.home-page')}}"><span>Trang chủ</span></a>
-                    <span class="mr_lr">/</span>
-                </li>
-                <li><strong><span><% title %></span></strong></li>
-            </ul>
         </div>
-    </section>
-    <section class="section" >
+    </div>
+    <section class="section mt-5 mb-5" >
         <div class="container">
             <div class="wrap_background_aside page_login">
                 <div class="row">
@@ -36,34 +45,34 @@
                         <div class="row" ng-show="formLogin">
                             <div class="page-login pagecustome clearfix">
                                 <div class="wpx" style="margin-bottom: 0">
-                                    <h1 class="title_heads a-center"><span>Đăng nhập</span></h1>
+                                    <h1 class="title_heads text-center"><span>Đăng nhập</span></h1>
                                     <div id="login" class="section">
                                         <form id="customer_login">
                                             <div class="form-signup clearfix">
-                                                <fieldset class="form-group">
+                                                <fieldset class="form-group mb-3">
                                                     <input type="text"
                                                         class="form-control form-control-lg"
                                                         id="customer_email" ng-model="account_name" placeholder="Email hoặc Tên đăng nhập" Required>
                                                 </fieldset>
-                                                <fieldset class="form-group">
+                                                <fieldset class="form-group mb-3">
                                                     <input type="password" class="form-control form-control-lg"
                                                         id="customer_password" ng-model="password"
                                                         placeholder="Mật khẩu" Required>
                                                 </fieldset>
                                                 <div class="pull-xs-left">
-                                                    <input class="btn btn-style btn_50" type="submit" value="Đăng nhập" ng-click="loginClient()" />
+                                                    <input class="btn btn-style btn_50 btn-primary" type="submit" value="Đăng nhập" ng-click="loginClient()" />
                                                 </div>
                                                 <div class="btn_boz_khac">
                                                     <div class="btn_khac">
-                                                        <span class="quenmk">Quên mật khẩu?</span>
-                                                        <a href="javascript:void(0)" ng-click="showFormRegister()" class="btn-link-style btn-register" style="font-size: 16px; line-height: 24px;"
+                                                        {{-- <span class="quenmk">Quên mật khẩu?</span> --}}
+                                                        <a href="javascript:void(0)" ng-click="showFormRegister()" class="btn-link-style btn-register mt-3" style="font-size: 16px; line-height: 24px; float: right;"
                                                             title="Đăng ký tại đây">Đăng ký tại đây</a>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
                                     </div>
-                                    <div class="h_recover" style="display:none;">
+                                    {{-- <div class="h_recover" style="display:none;">
                                         <div id="recover-password" class="form-signup page-login">
                                             <form id="recover_customer_password">
                                                 <div class="form-signup" style="color: red; font-size: 16px; line-height: 24px;">
@@ -86,17 +95,17 @@
                                                 </div>
                                             </form>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>
                         <div class="row" ng-show="formRegister">
                             <div class="page-login pagecustome clearfix">
                                 <div class="wpx" style="margin-bottom: 0">
-                                    <h1 class="title_heads a-center"><span>Đăng ký</span></h1>
-                                    <span class="block a-center dkm margin-top-10">Đã có tài khoản, đăng nhập <a
+                                    <h1 class="title_heads text-center mb-0"><span>Đăng ký</span></h1>
+                                    <div class="block text-center dkm mb-4">Đã có tài khoản, đăng nhập <a
                                             href="javascript:void(0)" ng-click="showFormLogin()" class="btn-link-style btn-register">tại
-                                            đây</a></span>
+                                            đây</a></div>
                                     <div id="login" class="section">
                                         <form id="customer_register" accept-charset="UTF-8">
                                             <div class="form-signup clearfix">
@@ -162,7 +171,7 @@
                                                             </span>
                                                         </fieldset>
                                                     </div>
-                                                    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                                                    {{-- <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                                                         <fieldset class="form-group" style="margin-bottom: 12px">
                                                             <input type="text"
                                                                 class="form-control form-control-lg" style="margin-bottom: 0;" value=""
@@ -172,11 +181,11 @@
                                                                 <strong><% errors['invite_code'][0] %></strong>
                                                             </span>
                                                         </fieldset>
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
                                                 <div class="section">
-                                                    <button type="submit" value="Đăng ký" ng-click="registerClient()"
-                                                        class="btn  btn-style btn_50">Đăng ký</button>
+                                                    <input  type="submit" value="Đăng ký" ng-click="registerClient()"
+                                                        class="btn btn-primary btn-style btn_50">
                                                 </div>
                                             </div>
                                         </form>
@@ -189,13 +198,6 @@
             </div>
         </div>
     </section>
-
-    <div id="js-global-alert" class="alert alert-success" role="alert">
-        <button type="button" class="close"><span aria-hidden="true"><span
-                    aria-hidden="true">&times;</span></span></button>
-        <h5 class="alert-heading"></h5>
-        <p class="alert-content"></p>
-    </div>
 </div>
 @endsection
 @push('script')
@@ -278,7 +280,7 @@
                         toastr.success(response.message);
                         window.location.href = '{{route('front.client-account')}}';
                         localStorage.setItem('{{ env("prefix") }}-token', response.data.token);
-                        localStorage.setItem('showMenuAdminClient', true);
+                        // localStorage.setItem('showMenuAdminClient', true);
                     }else{
                         toastr.error(response.message);
                     }
